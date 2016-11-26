@@ -1,0 +1,85 @@
+package code;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
+import com.sun.jna.Native;
+
+public class Nlpir {
+	
+	private static CLibrary Instance = (CLibrary) Native
+			.loadLibrary("/home/wubin/Documents/workspace-sts-3.8.2.RELEASE/JnaTest_NLPIR/target/classes/libNLPIR.so", CLibrary.class);
+	
+	public static boolean init() {
+		String argu = "/home/wubin/Documents/workspace-sts-3.8.2.RELEASE/JnaTest_NLPIR/target/classes/argu";
+		int charset_type = 1;
+		int init_flag = Instance.NLPIR_Init(argu, charset_type, "0");
+		String nativeBytes = null;
+		if (0 == init_flag) {
+			nativeBytes = Instance.NLPIR_GetLastErrorMsg();
+			System.err.println("Nlpir initialization failed! The reason is " + nativeBytes);
+			return false;
+		}
+		return true;
+	}
+	
+	public static void destroy() {
+		Instance.NLPIR_Exit();
+	}
+	
+	public static String processParagraph(String text){
+		String nativeBytes = null;
+		nativeBytes = Instance.NLPIR_ParagraphProcess(text, 1);
+		return nativeBytes;
+	}
+	
+	public static void addUserWord(String word){
+		Instance.NLPIR_AddUserWord(word);
+	}
+	
+	public static void delUserWord(String word){
+		Instance.NLPIR_DelUsrWord(word);
+	}
+	
+	public static String getKeyWords(String text){
+		String nativeByte = Instance.NLPIR_GetKeyWords(text, 10, false);
+		return nativeByte;
+	}
+	
+	public static String getFileKeyWords(String filePath){
+		String nativeByte = Instance.NLPIR_GetFileKeyWords(filePath,
+				10, false);
+		return nativeByte;
+	}
+	
+	public static String getWordFreqStat(String text){
+		String nativeByte = Instance.NLPIR_WordFreqStat(text);
+		return nativeByte;
+	}
+	
+	public static String transString(String aidString, String ori_encoding, String new_encoding) {
+		try {
+			return new String(aidString.getBytes(ori_encoding), new_encoding);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static byte[] encode(char[] charArray) {
+		try {
+			Charset charset = Charset.forName("UTF-8");
+			CharsetEncoder encoder = charset.newEncoder();
+			ByteBuffer bb = encoder.encode(CharBuffer.wrap(charArray));
+			byte[] ba = new byte[bb.limit()];
+			bb.get(ba);
+			return ba;
+		} catch (CharacterCodingException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+}

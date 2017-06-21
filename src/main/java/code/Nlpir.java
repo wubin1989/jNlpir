@@ -64,6 +64,11 @@ public class Nlpir {
 		String nativeByte = Instance.NLPIR_WordFreqStat(text);
 		return nativeByte;
 	}
+	
+	public static int getParagraphProcessAWordCount(final String text) {
+        final int count = Nlpir.Instance.NLPIR_GetParagraphProcessAWordCount(text);
+        return count;
+    }
 
 	public static Map.Entry<String, Integer>[] getWordFreqStatForSpecificPos(String text, String pos, int minLength,
 			int top) {

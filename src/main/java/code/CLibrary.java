@@ -23,6 +23,8 @@ public interface CLibrary extends Library {
 	public String NLPIR_WordFreqStat(String sText);
 	
 	public String NLPIR_FileWordFreqStat(String sFilePath);
-
+	
+	public abstract int NLPIR_GetParagraphProcessAWordCount(String paramString);
+	
 	public void NLPIR_Exit();
 }

@@ -41,6 +41,10 @@ public class Nlpir {
 		nativeBytes = Instance.NLPIR_ParagraphProcess(text, 1);
 		return nativeBytes;
 	}
+	
+	public static void importUserDict(final String sFilePath, final boolean bOverwrite) {
+        Nlpir.Instance.NLPIR_ImportUserDict(sFilePath, bOverwrite);
+    }
 
 	public static void addUserWord(String word) {
 		Instance.NLPIR_AddUserWord(word);

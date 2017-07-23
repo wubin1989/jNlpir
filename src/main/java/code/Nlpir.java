@@ -14,13 +14,21 @@ import java.util.Map;
 import com.sun.jna.Native;
 
 public class Nlpir {
-
+		
+	private static String soPath;
+	private static String arguPath;
+	
+	static {
+		soPath = System.getProperty("sopath");
+		arguPath = System.getProperty("argupath");
+	}
+	
 	private static CLibrary Instance = (CLibrary) Native.loadLibrary(
-			"/data/wubin/hadoopapp/libNLPIR.so",
+			soPath,
 			CLibrary.class);
 
 	public static boolean init() {
-		String argu = "/data/wubin/hadoopapp/argu";
+		String argu = arguPath;
 		int charset_type = 1;
 		int init_flag = Instance.NLPIR_Init(argu, charset_type, "0");
 		String nativeBytes = null;

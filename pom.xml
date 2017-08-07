@@ -23,8 +23,9 @@
 		<dependency>
 			<groupId>net.java.dev.jna</groupId>
 			<artifactId>jna</artifactId>
-			<version>4.0.0</version>
+			<version>4.4.0</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>com.googlecode.juniversalchardet</groupId>
@@ -89,7 +90,7 @@
 						</descriptorRefs>
 						<archive>
 							<manifest>
-								<mainClass>code.Nlpir</mainClass>
+								<mainClass>ictclas.Ictclas</mainClass>
 							</manifest>
 						</archive>
 					</configuration>

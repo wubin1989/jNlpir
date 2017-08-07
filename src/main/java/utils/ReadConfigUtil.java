@@ -49,6 +49,6 @@ public class ReadConfigUtil {
 	}
 
 	public static void main(String args[]) {
-		System.out.println(getValue("dll_or_so_path"));
+		System.out.println(getValue("sent.so.path"));
 	}
 }

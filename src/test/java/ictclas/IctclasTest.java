@@ -40,14 +40,10 @@ public class IctclasTest {
 
 	@Test
 	public void testFenci() {
-		String text = "setUp()和High5制霸青春	tearDown()胡咏梅方法也依赖@Before和@After标记，这样做的最大的好处是在继承体系内不必担心忘记了在setUp()方法中调用父类的super.setUp()方法，JUnit框架会自动处理父类的@Before和@After标记的方法。\n" + 
-				"\n" + 
-				"并且，JUnit框架对@Before和@After的调用顺序类似于类的构造方法和析构方法，即@Before按照父类到子类的顺序调用，@After则相反，这样保证了资源的正确获取和释放。\n" + 
-				"\n" + 
-				"当然，不再强迫必须使用setUp和tearDown作为方法名，可以使用更有意义的方法名，例如：initDatabase()和closeDatabase()，只要它们被标注了@Before和@After即可。";
-		
+		String text = "#那年花开月正圆#胡咏梅下毒终于被揭发！快乐开心然而网友们却跑到幸福网易考拉海购的广告里怒怼胡咏梅。。。"
+				+ "求给胡咏梅下毒求让胡咏梅触电的弹幕刷满屏，只想说网友们真的入戏好深。默默#心疼下线的胡咏梅#3秒。L网易考拉海购的秒拍视频 ​​​​";
 		text = text.replaceAll("[^\\u4e00-\\u9fa5a-zA-Z\\d]", " ").trim();
-		Map.Entry<String, Integer>[] stats = Ictclas.getWordFreqStatForSpecificPos(text, "n", 2, 0);
+		Map.Entry<String, Integer>[] stats = Ictclas.getWordFreqStatForSpecificPos(text, new String[]{"n", "a"}, 2, 0);
 		if (stats != null) {
 			for (Map.Entry<String, Integer> stat : stats) {
 				System.out.println(stat.getKey() + " >> " + stat.getValue());

@@ -6,9 +6,11 @@ import java.nio.CharBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.sun.jna.Native;
@@ -84,14 +86,13 @@ public class Ictclas {
         return count;
     }
 
-	public static Map.Entry<String, Integer>[] getWordFreqStatForSpecificPos(String text, String pos, int minLength,
+	public static Map.Entry<String, Integer>[] getWordFreqStatForSpecificPos(String text, String[] pos, int minLength,
 			int top) {
 		String nativeByte = Instance.NLPIR_WordFreqStat(text);
 		if (nativeByte.length() != 0) {
 			String[] wordStats = nativeByte.split("#");
 			LinkedHashMap<String, Integer> lhm = new LinkedHashMap<String, Integer>();
 			for (String wordStat : wordStats) {
-				System.out.println(wordStat);
 				String[] stat = wordStat.split("/");
 				if (stat.length < 3) {
 					return null;
@@ -99,7 +100,8 @@ public class Ictclas {
 				String word = stat[0];
 				String _pos = stat[1];
 				Integer freq = Integer.parseInt(stat[2]);
-				if (_pos.equals(pos) && word.length() >= minLength) {
+				List<String> posList = Arrays.asList(pos);
+				if (posList.contains(_pos) && word.length() >= minLength) {
 					lhm.put(word, freq);
 				}
 			}

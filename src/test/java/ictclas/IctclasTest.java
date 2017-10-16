@@ -40,7 +40,7 @@ public class IctclasTest {
 
 	@Test
 	public void testFenci() {
-		String text = "#那年花开月正圆#胡咏梅下毒终于被揭发！快乐开心然而网友们却跑到幸福网易考拉海购的广告里怒怼胡咏梅。。。"
+		String text = "#那年花开月正圆#胡咏梅下毒终于被揭发！快乐岳东明开心然而网友们却跑到幸福网易考拉海购的广告里怒怼胡咏梅。。。"
 				+ "求给胡咏梅下毒求让胡咏梅触电的弹幕刷满屏，只想说网友们真的入戏好深。默默#心疼下线的胡咏梅#3秒。L网易考拉海购的秒拍视频 ​​​​";
 		text = text.replaceAll("[^\\u4e00-\\u9fa5a-zA-Z\\d]", " ").trim();
 		Map.Entry<String, Integer>[] stats = Ictclas.getWordFreqStatForSpecificPos(text, new String[]{"n", "a"}, 2, 0);

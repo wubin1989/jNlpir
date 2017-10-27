@@ -14,7 +14,7 @@ public abstract interface CLibrarySentiment extends Library {
 	//
 	public abstract void ST_Exit();
 
-	public abstract String ST_GetLastErrorMsg();
+	public abstract String ST_GetLastErrMsg();
 
 	public abstract double ST_GetSentimentPoint(String sSentence);
 

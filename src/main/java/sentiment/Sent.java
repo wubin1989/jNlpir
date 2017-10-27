@@ -22,7 +22,7 @@ public class Sent {
 		int charset_type = 1;
 		if (!Instance.ST_Init(argu, charset_type, ""))
         {
-			System.out.println(Instance.ST_GetLastErrorMsg());
+			System.out.println(Instance.ST_GetLastErrMsg());
             System.out.println("初始化失败");
             System.exit(1);
         }

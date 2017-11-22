@@ -105,16 +105,23 @@ public class Ictclas {
 					lhm.put(word, freq);
 				}
 			}
-			@SuppressWarnings("unchecked")
-			Map.Entry<String, Integer>[] result = lhm.entrySet().stream()
-					.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).toArray(size -> new Map.Entry[size]);
+			Map.Entry<String, Integer>[] result = null;
 			if (top > 0) {
-				result = Arrays.copyOfRange(result, 0, top);
+				result = lhm.entrySet().stream()
+					.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).toArray(size -> new Map.Entry[size]);
+//				result = Arrays.copyOfRange(result, 0, top);
+			}else{
+				result = lhm.entrySet().toArray(new Map.Entry[lhm.size()]);
 			}
 			return result;
 		}
 		return null;
 	}
+
+	public static Map.Entry<String, Integer>[] getWordFreqStatForSpecificPos(String text, String[] pos, int minLength) {
+		return getWordFreqStatForSpecificPos(text, pos, minLength, 0);
+	}
+
 
 	public static String transString(String aidString, String ori_encoding, String new_encoding) {
 		try {

@@ -1,3 +1,7 @@
 lib
 target
 **/.DS_Store
+.idea/
+JnaTest_NLPIR.iml
+JnaTest_NLPIR.ipr
+JnaTest_NLPIR.iws

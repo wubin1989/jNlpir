@@ -89,7 +89,7 @@ public class Ictclas {
 	public static Map.Entry<String, Integer>[] getWordFreqStatForSpecificPos(String text, String[] pos, int minLength,
 			int top) {
 		String nativeByte = Instance.NLPIR_WordFreqStat(text);
-		if (nativeByte.length() != 0) {
+    if (nativeByte.length() != 0) {
 			String[] wordStats = nativeByte.split("#");
 			LinkedHashMap<String, Integer> lhm = new LinkedHashMap<String, Integer>();
 			for (String wordStat : wordStats) {
@@ -102,7 +102,7 @@ public class Ictclas {
 				Integer freq = Integer.parseInt(stat[2]);
 				List<String> posList = Arrays.asList(pos);
 				if (posList.contains(_pos) && word.length() >= minLength) {
-					lhm.put(word, freq);
+					lhm.put(word + "_" + _pos, freq);
 				}
 			}
 			Map.Entry<String, Integer>[] result = null;
@@ -113,7 +113,9 @@ public class Ictclas {
 			}else{
 				result = lhm.entrySet().toArray(new Map.Entry[lhm.size()]);
 			}
-			return result;
+      System.out.println("result is  =========================");
+      System.out.println(result);
+      return result;
 		}
 		return null;
 	}

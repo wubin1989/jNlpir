@@ -2,28 +2,28 @@ package ictclas;
 
 import com.sun.jna.Library;
 
-public abstract interface CLibrary extends Library {
-	public abstract int NLPIR_Init(String paramString1, int paramInt, String paramString2);
+public interface CLibrary extends Library {
+	int NLPIR_Init(String paramString1, int paramInt, String paramString2);
 
-	public abstract String NLPIR_ParagraphProcess(String paramString, int paramInt);
+	String NLPIR_ParagraphProcess(String paramString, int paramInt);
 
-	public abstract String NLPIR_GetKeyWords(String paramString, int paramInt, boolean paramBoolean);
+	String NLPIR_GetKeyWords(String paramString, int paramInt, boolean paramBoolean);
 
-	public abstract String NLPIR_GetFileKeyWords(String paramString, int paramInt, boolean paramBoolean);
+	String NLPIR_GetFileKeyWords(String paramString, int paramInt, boolean paramBoolean);
 
-	public abstract int NLPIR_ImportUserDict(String paramString, boolean paramBoolean);
+	int NLPIR_ImportUserDict(String paramString, boolean paramBoolean);
 
-	public abstract int NLPIR_AddUserWord(String paramString);
+	int NLPIR_AddUserWord(String paramString);
 
-	public abstract int NLPIR_DelUsrWord(String paramString);
+	int NLPIR_DelUsrWord(String paramString);
 
-	public abstract String NLPIR_GetLastErrorMsg();
+	String NLPIR_GetLastErrorMsg();
 
-	public abstract String NLPIR_WordFreqStat(String paramString);
+	String NLPIR_WordFreqStat(String paramString);
 
-	public abstract String NLPIR_FileWordFreqStat(String paramString);
+	String NLPIR_FileWordFreqStat(String paramString);
 
-	public abstract int NLPIR_GetParagraphProcessAWordCount(String paramString);
+	int NLPIR_GetParagraphProcessAWordCount(String paramString);
 
-	public abstract void NLPIR_Exit();
+	void NLPIR_Exit();
 }
